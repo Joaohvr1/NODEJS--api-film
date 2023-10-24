@@ -1,8 +1,10 @@
+require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
+
 const app = new express();
 app.use(express.json());
-const port = 3000;
+const port = 3000
 
 const Film = mongoose.model('Film',{
     title: String,
@@ -12,9 +14,13 @@ const Film = mongoose.model('Film',{
 });
 
 
+
 app.get('/', async (req,res) => {
+
     const films = await Film.find();
     res.send(films);
+        
+    
 })
 
 app.delete('/:id', async (req, res) => {
@@ -48,6 +54,8 @@ app.post('/', async (req,res) => {
 })
 
 app.listen(port, () => {
-    mongoose.connect("mongodb+srv://joaohvr1:evr102@start-api.sjcynqs.mongodb.net/?retryWrites=true&w=majority");
+    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@start-api.sjcynqs.mongodb.net/?retryWrites=true&w=majority`);
     console.log(`App rodando em localhost/${port}`);
 })
+
+
