@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const app = new express();
 app.use(express.json());
-const port = 3000
+const port = 3000;
 
 const Film = mongoose.model('Film',{
     title: String,
@@ -54,7 +54,7 @@ app.post('/', async (req,res) => {
 })
 
 app.listen(port, () => {
-    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@start-api.sjcynqs.mongodb.net/?retryWrites=true&w=majority`);
+    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@start-api.sjcynqs.mongodb.net/?retryWrites=true&w=majority`)
     console.log(`App rodando em localhost/${port}`);
 })
 
